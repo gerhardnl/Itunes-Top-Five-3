@@ -11,12 +11,12 @@ import java.util.Collections;
 import java.util.List;
 
 @RestController
-@RequestMapping("/rest/artist")
+@RequestMapping("/g/artist")
 public class HelloResource {
     List<String> favoriteArtists = new ArrayList<>();
 
     @GetMapping("/top five")
-    public List hello(String artist) throws IOException {
+    public List topFive(String artist) throws IOException {
         if (favoriteArtists.contains(artist.toLowerCase())){
             return DataFromApi.toObject(artist);
         }else {
@@ -24,7 +24,7 @@ public class HelloResource {
         }
     }
     @GetMapping("/favorite")
-    public List helloPost(String artist) throws IOException{
+    public List favorites(String artist) throws IOException{
         if (DataFromApi.toObject(artist) != null) {
             if (!favoriteArtists.contains(artist)) {
                 favoriteArtists.add(artist.toLowerCase());
@@ -36,7 +36,7 @@ public class HelloResource {
         return favoriteArtists;
     }
     @GetMapping("/Delete")
-    public List helloPut(String artist) throws IOException{
+    public List Delete(String artist) throws IOException{
         if (favoriteArtists.contains(artist.toLowerCase())){
             favoriteArtists.remove(artist.toLowerCase());
             return favoriteArtists;
