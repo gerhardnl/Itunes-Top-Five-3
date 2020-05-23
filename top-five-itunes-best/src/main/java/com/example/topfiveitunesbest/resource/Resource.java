@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/g/artist")
-public class HelloResource {
+public class Resource {
     List<String> favoriteArtists = new ArrayList<>();
 
     @GetMapping("/top five")
