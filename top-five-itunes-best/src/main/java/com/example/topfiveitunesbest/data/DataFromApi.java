@@ -9,7 +9,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class DataFromApi {
@@ -19,14 +18,15 @@ public class DataFromApi {
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         return connection;
     }
-    public static String getString(HttpURLConnection connection){
+
+    public static String getString(HttpURLConnection connection) {
         BufferedReader in;
         StringBuilder builder = new StringBuilder();
         String line;
-        try{
+        try {
             in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
-            while ((line = in.readLine()) != null){
+            while ((line = in.readLine()) != null) {
                 builder.append(line);
             }
         } catch (IOException e) {
@@ -44,7 +44,7 @@ public class DataFromApi {
             for (int i = 0; i < pojos.getResults().size(); i++) {
                 list.add(pojos.getResults().get(i).getCollectionName());
             }
-        }else {
+        } else {
             return null;
         }
         return list;

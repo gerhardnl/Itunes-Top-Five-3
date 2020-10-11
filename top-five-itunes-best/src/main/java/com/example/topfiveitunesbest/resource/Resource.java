@@ -2,8 +2,9 @@ package com.example.topfiveitunesbest.resource;
 
 
 import com.example.topfiveitunesbest.data.DataFromApi;
-import com.example.topfiveitunesbest.data.Pojo;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,30 +18,32 @@ public class Resource {
 
     @GetMapping("/top five")
     public List topFive(String artist) throws IOException {
-        if (favoriteArtists.contains(artist.toLowerCase())){
+        if (favoriteArtists.contains(artist.toLowerCase())) {
             return DataFromApi.toObject(artist);
-        }else {
+        } else {
             return Collections.singletonList("this artist is not i your list of favorites");
         }
     }
+
     @GetMapping("/favorite")
-    public List favorites(String artist) throws IOException{
+    public List favorites(String artist) throws IOException {
         if (DataFromApi.toObject(artist) != null) {
             if (!favoriteArtists.contains(artist)) {
                 favoriteArtists.add(artist.toLowerCase());
             }
 
-        }else {
+        } else {
             return Collections.singletonList("not valid search");
         }
         return favoriteArtists;
     }
+
     @GetMapping("/Delete")
-    public List Delete(String artist) throws IOException{
-        if (favoriteArtists.contains(artist.toLowerCase())){
+    public List Delete(String artist) throws IOException {
+        if (favoriteArtists.contains(artist.toLowerCase())) {
             favoriteArtists.remove(artist.toLowerCase());
             return favoriteArtists;
-        }else {
+        } else {
             return Collections.singletonList("this artist is not i your list of favorites");
         }
     }
